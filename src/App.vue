@@ -1,28 +1,43 @@
 <template>
   <div id="app">
-    <img alt="Vue logo" src="./assets/logo.png">
-    <HelloWorld msg="Welcome to Your Vue.js App"/>
+    <puzzle @next="next" :row ='row' :col='col'></puzzle>
+    <img src="./assets/4.jpg" alt="">
   </div>
 </template>
 
 <script>
-import HelloWorld from './components/HelloWorld.vue'
-
+import Puzzle from './components/Puzzle';
 export default {
   name: 'app',
+  data () {
+    return {
+      row : 3,
+      col : 3,
+      back : ['../assets/0.jpg','../assets/1.jpg','../assets/2.jpg']
+    }
+  },
   components: {
-    HelloWorld
+    Puzzle
+  },
+  methods : {
+    next () {
+      if(this.row>=5){
+        return;
+      }
+      this.row++;
+      this.col++;
+    }
   }
 }
 </script>
 
 <style lang="less">
 #app {
-  font-family: 'Avenir', Helvetica, Arial, sans-serif;
-  -webkit-font-smoothing: antialiased;
-  -moz-osx-font-smoothing: grayscale;
-  text-align: center;
-  color: #2c3e50;
-  margin-top: 60px;
+  display: flex;
+}
+img {
+  width: 200px;
+  height: 200px;
+  margin: 50px;
 }
 </style>
